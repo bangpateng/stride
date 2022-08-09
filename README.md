@@ -34,7 +34,7 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Gunakan (Script Otomatis)
 You can setup your stride fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O stride.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/stride.sh && chmod +x stride.sh && ./stride.sh
+wget -O stride.sh https://raw.githubusercontent.com/bangpateng/stride/main/stride.sh && chmod +x stride.sh && ./stride.sh
 ```
 
 ## Post installation
