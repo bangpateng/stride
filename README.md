@@ -15,15 +15,15 @@ Seperti rantai Cosmos-SDK lainnya, persyaratan perangkat kerasnya cukup sederhan
 
 ### Persyaratan Perangkat Keras Minimum
 - 4x CPU; semakin cepat kecepatan jam semakin baik
-- RAM 8 GB
-- Penyimpanan 100GB (SSD atau NVME)
-- Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
+  - RAM 8 GB
+  - Penyimpanan 100GB (SSD atau NVME)
+  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ### Persyaratan Perangkat Keras yang Direkomendasikan
 - 4x CPU; semakin cepat kecepatan jam semakin baik
-- RAM 32GB
-- Penyimpanan 200GB (SSD atau NVME)
-- Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
+  -RAM 32GB
+  - Penyimpanan 200GB (SSD atau NVME)
+  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ## 1. Jalankan Node (Script Otomatis)
 Jangan Lupa Masukan atau Ketikan dan Buat Nama Validator Anda
@@ -121,4 +121,70 @@ strided tx staking edit-validator \
   --details="<your_validator_description>" \
   --chain-id=$STRIDE_CHAIN_ID \
   --from=$WALLET
+```
+## Perintah Yang Berguna
+Check logs
+```
+journalctl -fu strided -o cat
+```
+
+Start service
+```
+sudo systemctl start strided
+```
+Stop service
+```
+sudo systemctl stop strided
+```
+Restart service
+```
+sudo systemctl restart strided
+```
+## Perintah Node
+
+Synchronization info
+```
+strided status 2>&1 | jq .SyncInfo
+```
+Validator info
+```
+strided status 2>&1 | jq .ValidatorInfo
+```
+Node info
+```
+strided status 2>&1 | jq .NodeInfo
+```
+Show node id
+```
+strided tendermint show-node-id
+```
+
+## Perintah Wallet
+
+List of wallets
+```
+strided keys list
+```
+Recover wallet
+```
+strided keys add $WALLET --recover
+```
+Delete wallet
+```
+strided keys delete $WALLET
+```
+Get wallet balance
+```
+strided query bank balances $STRIDE_WALLET_ADDRESS
+```
+
+## Hapus Node
+```
+sudo systemctl stop strided
+sudo systemctl disable strided
+sudo rm /etc/systemd/system/stride* -rf
+sudo rm $(which strided) -rf
+sudo rm $HOME/.stride* -rf
+sudo rm $HOME/stride -rf
+sed -i '/STRIDE_/d' ~/.bash_profile
 ```
