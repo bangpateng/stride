@@ -15,23 +15,23 @@ Official documentation:
 Explorer:
 >-  https://stride.explorers.guru
 
-## Hardware Requirements
+## Persyaratan Perangkat Keras
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 
-### Minimum Hardware Requirements
+### Persyaratan Perangkat Keras Minimum
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 100GB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-### Recommended Hardware Requirements 
+### Persyaratan Perangkat Keras yang Direkomendasikan
  - 4x CPUs; the faster clock speed the better
  - 32GB RAM
  - 200GB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-## Set up your stride fullnode
-### Option 1 (automatic)
+## Siapkan Full Node Anda
+### Gunakan (Script Otomatis)
 You can setup your stride fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O stride.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/stride.sh && chmod +x stride.sh && ./stride.sh
@@ -49,29 +49,23 @@ Next you have to make sure your validator is syncing blocks. You can use command
 strided status 2>&1 | jq .SyncInfo
 ```
 
-### (OPTIONAL) State Sync
-You can state sync your node in minutes by running commands below
-```
-N/A
-```
-
-### Create wallet
+### Membuat Wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
 strided keys add $WALLET
 ```
 
-(OPTIONAL) To recover your wallet using seed phrase
+(OPSIONAL) Untuk memulihkan dompet Anda menggunakan frase seed
 ```
 strided keys add $WALLET --recover
 ```
 
-To get current list of wallets
+Untuk mendapatkan daftar dompet saat ini
 ```
 strided keys list
 ```
 
-### Save wallet info
+### Simpan info dompet (Variable)
 Add wallet and valoper address into variables 
 ```
 STRIDE_WALLET_ADDRESS=$(strided keys show $WALLET -a)
@@ -81,26 +75,26 @@ echo 'export STRIDE_VALOPER_ADDRESS='${STRIDE_VALOPER_ADDRESS} >> $HOME/.bash_pr
 source $HOME/.bash_profile
 ```
 
-### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [Stride discord server](https://discord.gg/n6KrK77t) and navigate to:
-- **#token-faucet** to request test tokens
+### Danai dompet Anda | Claim Faucet
+Untuk membuat validator terlebih dahulu, Anda perlu mendanai dompet Anda dengan token testnet.
+Untuk isi ulang dompet Anda, gabung [Stride discord server](https://discord.gg/n6KrK77t) dan navigasikan ke:
+- **#token-faucet** untuk meminta token uji
 
-To request a faucet grant:
+Perintah Untuk meminta faucet di Server Discord:
 ```
 $faucet-stride:<STRIDE_WALLET_ADDRESS>
 ```
 
-### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 ustrd) and your node is synchronized
+### Membuat Validator
+Sebelum membuat validator, pastikan Anda memiliki setidaknya 1 strd (1 strd sama dengan 1000000 ustrd) dan node Anda tersinkronisasi
 
-To check your wallet balance:
+Untuk memeriksa saldo dompet Anda:
 ```
 strided query bank balances $STRIDE_WALLET_ADDRESS
 ```
-> If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
+> Jika dompet Anda tidak menunjukkan saldo apa pun, kemungkinan simpul Anda masih disinkronkan. Silahkan tunggu sampai selesai untuk sinkronisasi lalu lanjutkan
 
-To create your validator run command below
+Untuk membuat perintah jalankan validator Anda di bawah ini
 ```
 strided tx staking create-validator \
   --amount 10000000ustrd \
