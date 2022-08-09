@@ -52,6 +52,11 @@ echo 'export STRIDE_VALOPER_ADDRESS='${STRIDE_VALOPER_ADDRESS} >> $HOME/.bash_pr
 source $HOME/.bash_profile
 ```
 ## 5. Jalankan Sync Log
+
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183641338-6fab957b-06c7-4542-ad4b-a030d73f13e4.PNG">
+</p>
+
 ```
 journalctl -fu strided -o cat
 ```
@@ -64,22 +69,23 @@ $faucet-stride:<STRIDE_WALLET_ADDRESS>
 ```
 Untuk Membuat Validator, Anda Harus Menunggu Hingga Status Sinkronisasi Node Kalian Berstatus "FALSE" dan Tunggu Hingga Token Faucet Anda Sudah Tiba, Gunakan Perintah di Bawah :
 
-<p align="center">
-  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183638647-998687d0-6d87-48da-89f5-e4daa737ccc9.PNG">
-</p>
-
 - Check Saldo
 ```
 strided query bank balances $STRIDE_WALLET_ADDRESS
 ```
 <p align="center">
-  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183639084-09757f91-a64b-4292-89b7-c09286e4b521.png">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183638647-998687d0-6d87-48da-89f5-e4daa737ccc9.PNG">
 </p>
 
 - Check Status Sinkronisasi
+
 ```
 strided status 2>&1 | jq .SyncInfo
 ```
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183639084-09757f91-a64b-4292-89b7-c09286e4b521.png">
+</p>
+
 ## 7. Membuat Validator
 (Pastikan Status Sudah FALSE)
 
