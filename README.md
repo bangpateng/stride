@@ -56,3 +56,50 @@ echo 'export STRIDE_WALLET_ADDRESS='${STRIDE_WALLET_ADDRESS} >> $HOME/.bash_prof
 echo 'export STRIDE_VALOPER_ADDRESS='${STRIDE_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
+## Jalankan Sync Log
+```
+journalctl -fu strided -o cat
+```
+## Claim Token Faucet (Via Discord)
+Join Discord Cari Server #token-faucet : 
+
+Masukan Perintah di Bawah :
+```
+$faucet-stride:<STRIDE_WALLET_ADDRESS>
+```
+Untuk Membuat Validator, Anda Harus Menunggu Hingga Status Sinkronisasi Node Kalian Berstatus "FALSE" dan Tunggu Hingga Token Faucet Anda Sudah Tiba, Gunakan Perintah di Bawah :
+- Check Saldo
+```
+strided query bank balances $STRIDE_WALLET_ADDRESS
+```
+- Check Status Sinkronisasi
+```
+strided status 2>&1 | jq .SyncInfo
+```
+## Membuat Validator
+(Pastikan Status Sudah FALSE)
+```
+strided tx staking create-validator \
+  --amount 10000000ustrd \
+  --from $WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.07" \
+  --min-self-delegation "1" \
+  --pubkey  $(strided tendermint show-validator) \
+  --moniker $NODENAME \
+  --chain-id $STRIDE_CHAIN_ID
+```
+
+## Edit Profil Validator
+Anda Cukup Mengubah <your_keybase_id> , <your_website> , <your_validator_description> Untuk Yang Lain Biarkan Optional Bawaan
+(Tanpa Tanda <>)
+```
+strided tx staking edit-validator \
+  --moniker=$NODENAME \
+  --identity=<your_keybase_id> \
+  --website="<your_website>" \
+  --details="<your_validator_description>" \
+  --chain-id=$STRIDE_CHAIN_ID \
+  --from=$WALLET
+```
