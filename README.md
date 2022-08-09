@@ -31,6 +31,7 @@ Seperti rantai Cosmos-SDK lainnya, persyaratan perangkat kerasnya cukup sederhan
   - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ## Jalankan Node (Script Otomatis)
+Jangan Lupa Masukan atau Ketikan dan Buat Nama Validator Anda
 ```
 wget -O stride.sh https://raw.githubusercontent.com/bangpateng/stride/main/stride.sh && chmod +x stride.sh && ./stride.sh
 ```
@@ -43,7 +44,7 @@ Jangan Lupa Simpan Address & Mnemonic Anda
 ```
 strided keys add $WALLET
 ```
-(Opsional) Gunakan Peritah di Bawah Jika Anda Memiliki Wallet
+(Opsional) Gunakan Peritah di Bawah Jika Anda Memiliki Wallet Lama
 ```
 strided keys add $WALLET --recover
 ```
