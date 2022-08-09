@@ -82,6 +82,11 @@ strided status 2>&1 | jq .SyncInfo
 ```
 ## Membuat Validator
 (Pastikan Status Sudah FALSE)
+
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183640037-dd39bf19-9484-445c-bc23-6f3d133356f6.PNG">
+</p>
+
 ```
 strided tx staking create-validator \
   --amount 10000000ustrd \
@@ -97,7 +102,11 @@ strided tx staking create-validator \
 
 ## Edit Profil Validator
 Anda Cukup Mengubah <your_keybase_id> , <your_website> , <your_validator_description> Untuk Yang Lain Biarkan Optional Bawaan
-(Tanpa Tanda < )
+
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183640057-3cb24589-fe92-407c-80c0-9b843efb736f.png">
+</p>
+
 ```
 strided tx staking edit-validator \
   --moniker=$NODENAME \
