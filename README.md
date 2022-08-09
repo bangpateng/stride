@@ -106,87 +106,25 @@ strided tx staking create-validator \
   --pubkey  $(strided tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $STRIDE_CHAIN_ID
-```
 
-## Operations with liquid stake
-### Add liquid stake 
-Liquid stake your ATOM on Stride for stATOM. Here's an example of how to liquid stake
-```
-strided tx stakeibc liquid-stake 1000 uatom --from $WALLET --chain-id $STRIDE_CHAIN_ID
-```
-> Note: if you liquid stake 1000 uatom, you might only get 990 (could be more or less) stATOM in return! This is due to the way our exchange rate works. Your 990 stATOM are still worth 1000 uatom (or more, as you accrue staking rewards!)
-
-### Redeem stake
-After accruing some staking rewards, you can unstake your tokens. Currently, the unbonding period on our Gaia (Cosmos Hub) testnet is around 30 minutes.
-```
-strided tx stakeibc redeem-stake 1000 GAIA <COSMOS_ADDRESS_YOU_WANT_TO_REDEEM_TO> --chain-id $STRIDE_CHAIN_ID --from $WALLET
-```
-
-### Check if tokens are claimable
-If you'd like to see whether your tokens are ready to be claimed, look for your `UserRedemptionRecord` keyed by `<your_stride_account>`. 
-```
-strided q records list-user-redemption-record --limit 10000 --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))'
-```
-If your record has the attribute `isClaimable=true`, they're ready to be claimed!
-
-### Claim tokens
-After your tokens have unbonded, they can be claimed by triggering the claim process. 
-```
-wget -qO claim.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/tools/claim.sh && chmod +x claim.sh
-./claim.sh $STRIDE_WALLET_ADDRESS
-```
-> Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
-
-## Security
-To protect you keys please make sure you follow basic security rules
-
-### Set up ssh keys for authentication
-Good tutorial on how to set up ssh keys for authentication to your server can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
-
-### Basic Firewall security
-Start by checking the status of ufw.
-```
-sudo ufw status
-```
-
-Sets the default to allow outgoing connections, deny all incoming except ssh and 26656. Limit SSH login attempts
-```
-sudo ufw default allow outgoing
-sudo ufw default deny incoming
-sudo ufw allow ssh/tcp
-sudo ufw limit ssh/tcp
-sudo ufw allow ${STRIDE_PORT}656,${STRIDE_PORT}660/tcp
-sudo ufw enable
-```
-
-## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for stride validator](https://github.com/kj89/testnet_manuals/blob/main/stride/monitoring/README.md)
-
-## Calculate synchronization time
-This script will help you to estimate how much time it will take to fully synchronize your node\
-It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
-```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/tools/synctime.py && python3 ./synctime.py
-```
-
-### Check your validator key
+### Periksa kunci validator Anda
 ```
 [[ $(strided q staking validator $STRIDE_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(strided status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
 
-### Get list of validators
+### Dapatkan daftar validator
 ```
 strided q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
-## Get currently connected peer list with ids
+## Dapatkan daftar rekan yang saat ini terhubung dengan id
 ```
 curl -sS http://localhost:${STRIDE_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
-## Usefull commands
-### Service management
-Check logs
+## Perintah yang berguna
+### Manajemen Pelayanan
+Periksa log
 ```
 journalctl -fu strided -o cat
 ```
@@ -206,8 +144,8 @@ Restart service
 sudo systemctl restart strided
 ```
 
-### Node info
-Synchronization info
+### Info simpul (status)
+Informasi sinkronisasi
 ```
 strided status 2>&1 | jq .SyncInfo
 ```
@@ -227,7 +165,7 @@ Show node id
 strided tendermint show-node-id
 ```
 
-### Wallet operations
+### Perintah Operasi dompet
 List of wallets
 ```
 strided keys list
@@ -258,7 +196,7 @@ strided tx bank send $STRIDE_WALLET_ADDRESS <TO_STRIDE_WALLET_ADDRESS> 10000000u
 strided tx gov vote 1 yes --from $WALLET --chain-id=$STRIDE_CHAIN_ID
 ```
 
-### Staking, Delegation and Rewards
+### Staking, Delegasi, dan Hadiah
 Delegate stake
 ```
 strided tx staking delegate $STRIDE_VALOPER_ADDRESS 10000000ustrd --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
@@ -279,8 +217,8 @@ Withdraw rewards with commision
 strided tx distribution withdraw-rewards $STRIDE_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$STRIDE_CHAIN_ID
 ```
 
-### Validator management
-Edit validator
+### Manajemen validator
+Edit Profil validator
 ```
 strided tx staking edit-validator \
   --moniker=$NODENAME \
@@ -300,8 +238,8 @@ strided tx slashing unjail \
   --gas=auto
 ```
 
-### Delete node
-This commands will completely remove node from server. Use at your own risk!
+### Hapus Node/Simpul
+Perintah ini akan sepenuhnya menghapus node dari server. Gunakan dengan risiko Anda sendiri!
 ```
 sudo systemctl stop strided
 sudo systemctl disable strided
