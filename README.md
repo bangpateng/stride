@@ -25,16 +25,16 @@ Seperti rantai Cosmos-SDK lainnya, persyaratan perangkat kerasnya cukup sederhan
   - Penyimpanan 200GB (SSD atau NVME)
   - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
-## Jalankan Node (Script Otomatis)
+## 1. Jalankan Node (Script Otomatis)
 Jangan Lupa Masukan atau Ketikan dan Buat Nama Validator Anda
 ```
 wget -O stride.sh https://raw.githubusercontent.com/bangpateng/stride/main/stride.sh && chmod +x stride.sh && ./stride.sh
 ```
-## Load Sistem
+## 2. Load Sistem
 ```
 source $HOME/.bash_profile
 ```
-## Membuat Wallet
+## 3. Membuat Wallet
 Jangan Lupa Simpan Address & Mnemonic Anda
 ```
 strided keys add $WALLET
@@ -43,7 +43,7 @@ strided keys add $WALLET
 ```
 strided keys add $WALLET --recover
 ```
-## Masukan Variable 2 (Untuk Simpan Informasi Wallet)
+## 4. Masukan Variable 2 (Untuk Simpan Informasi Wallet)
 ```
 STRIDE_WALLET_ADDRESS=$(strided keys show $WALLET -a)
 STRIDE_VALOPER_ADDRESS=$(strided keys show $WALLET --bech val -a)
@@ -51,11 +51,11 @@ echo 'export STRIDE_WALLET_ADDRESS='${STRIDE_WALLET_ADDRESS} >> $HOME/.bash_prof
 echo 'export STRIDE_VALOPER_ADDRESS='${STRIDE_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
-## Jalankan Sync Log
+## 5. Jalankan Sync Log
 ```
 journalctl -fu strided -o cat
 ```
-## Claim Token Faucet (Via Discord)
+## 6. Claim Token Faucet (Via Discord)
 Join Discord Cari Server #token-faucet : 
 
 Masukan Perintah di Bawah :
@@ -80,7 +80,7 @@ strided query bank balances $STRIDE_WALLET_ADDRESS
 ```
 strided status 2>&1 | jq .SyncInfo
 ```
-## Membuat Validator
+## 7. Membuat Validator
 (Pastikan Status Sudah FALSE)
 
 <p align="center">
@@ -100,7 +100,7 @@ strided tx staking create-validator \
   --chain-id $STRIDE_CHAIN_ID
 ```
 
-## Edit Profil Validator
+## 8. Edit Profil Validator
 Anda Cukup Mengubah <your_keybase_id> , <your_website> , <your_validator_description> Untuk Yang Lain Biarkan Optional Bawaan
 
 <p align="center">
