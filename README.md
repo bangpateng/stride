@@ -63,10 +63,19 @@ Masukan Perintah di Bawah :
 $faucet-stride:<STRIDE_WALLET_ADDRESS>
 ```
 Untuk Membuat Validator, Anda Harus Menunggu Hingga Status Sinkronisasi Node Kalian Berstatus "FALSE" dan Tunggu Hingga Token Faucet Anda Sudah Tiba, Gunakan Perintah di Bawah :
+
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183638647-998687d0-6d87-48da-89f5-e4daa737ccc9.PNG">
+</p>
+
 - Check Saldo
 ```
 strided query bank balances $STRIDE_WALLET_ADDRESS
 ```
+<p align="center">
+  <img height="200" height="auto" src="https://user-images.githubusercontent.com/38981255/183639084-09757f91-a64b-4292-89b7-c09286e4b521.png">
+</p>
+
 - Check Status Sinkronisasi
 ```
 strided status 2>&1 | jq .SyncInfo
@@ -88,7 +97,7 @@ strided tx staking create-validator \
 
 ## Edit Profil Validator
 Anda Cukup Mengubah <your_keybase_id> , <your_website> , <your_validator_description> Untuk Yang Lain Biarkan Optional Bawaan
-(Tanpa Tanda <>)
+(Tanpa Tanda < )
 ```
 strided tx staking edit-validator \
   --moniker=$NODENAME \
