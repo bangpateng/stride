@@ -15,15 +15,15 @@ Seperti rantai Cosmos-SDK lainnya, persyaratan perangkat kerasnya cukup sederhan
 
 ### Persyaratan Perangkat Keras Minimum
 - 4x CPU; semakin cepat kecepatan jam semakin baik
-  - RAM 8 GB
-  - Penyimpanan 100GB (SSD atau NVME)
-  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
+- RAM 8 GB
+- Penyimpanan 100GB (SSD atau NVME)
+- Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ### Persyaratan Perangkat Keras yang Direkomendasikan
 - 4x CPU; semakin cepat kecepatan jam semakin baik
-  -RAM 32GB
-  - Penyimpanan 200GB (SSD atau NVME)
-  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
+- RAM 32GB
+- Penyimpanan 200GB (SSD atau NVME)
+- Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ## 1. Jalankan Node (Script Otomatis)
 Jangan Lupa Masukan atau Ketikan dan Buat Nama Validator Anda
