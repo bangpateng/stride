@@ -9,30 +9,30 @@
 
 # stride node setup for testnet — STRIDE
 
-Official documentation:
->- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
+Dokumentasi resmi:
+>- [Petunjuk penyiapan Validator](https://github.com/Stride-Labs/testnet)
 
-Explorer:
->-  https://stride.explorers.guru
+Penjelajah:
+>- https://stride.explorers.guru
 
 ## Persyaratan Perangkat Keras
-Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
+Seperti rantai Cosmos-SDK lainnya, persyaratan perangkat kerasnya cukup sederhana.
 
 ### Persyaratan Perangkat Keras Minimum
- - 4x CPUs; the faster clock speed the better
- - 8GB RAM
- - 100GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+- 4x CPU; semakin cepat kecepatan jam semakin baik
+  - RAM 8 GB
+  - Penyimpanan 100GB (SSD atau NVME)
+  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ### Persyaratan Perangkat Keras yang Direkomendasikan
- - 4x CPUs; the faster clock speed the better
- - 32GB RAM
- - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+- 4x CPU; semakin cepat kecepatan jam semakin baik
+  -RAM 32GB
+  - Penyimpanan 200GB (SSD atau NVME)
+  - Koneksi Internet permanen (lalu lintas akan minimal selama testnet; 10Mbps akan banyak - untuk produksi diharapkan setidaknya 100Mbps)
 
 ## Siapkan Full Node Anda
 ### Gunakan (Script Otomatis)
-You can setup your stride fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+Anda dapat mengatur langkah penuh Anda dalam beberapa menit dengan menggunakan skrip otomatis di bawah ini. Ini akan meminta Anda untuk memasukkan nama node validator Anda!
 ```
 wget -O stride.sh https://raw.githubusercontent.com/bangpateng/stride/main/stride.sh && chmod +x stride.sh && ./stride.sh
 ```
