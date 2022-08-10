@@ -3,7 +3,7 @@
 </p>
 
 # Chain upgrade to commit 15e65e9a364804671425051606fe0be6536452fe
-## (OPTION 1) Manual upgrade
+## Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
 `ERR UPGRADE "xxx" NEEDED at height: 155420`
 ```
