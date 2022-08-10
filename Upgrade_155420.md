@@ -2,10 +2,10 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/183283696-d1c4192b-f594-45bb-b589-15a5e57a795c.png">
 </p>
 
-# Chain upgrade to commit 15e65e9a364804671425051606fe0be6536452fe
-## Manual upgrade
-Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "xxx" NEEDED at height: 155420`
+# Peningkatan rantai untuk melakukan 15e65e9a364804671425051606fe0be6536452fe
+## Peningkatan manual
+Setelah rantai mencapai ketinggian pemutakhiran, Anda akan menemukan pesan kesalahan panik berikut:\
+`ERR UPGRADE "xxx" DIPERLUKAN pada ketinggian: 155420`
 ```
 sudo systemctl stop strided
 cd $HOME && rm -rf stride
@@ -16,4 +16,4 @@ sudo cp $HOME/stride/build/strided /usr/local/bin
 sudo systemctl restart strided && journalctl -fu strided -o cat
 ```
 
-!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `155420`!!!
+!!! JANGAN UPGRADE SEBELUM CHAIN MENCAPAI BLOK `155420`!!!
